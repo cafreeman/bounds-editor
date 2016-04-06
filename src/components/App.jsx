@@ -14,6 +14,12 @@ class App extends React.Component {
       <div className="container-fluid">
         <DevTools />
         <h3>Selected field is: {this.store.selectedField}</h3>
+        <li>
+          { this.store.bounds.map((bound, idx) => (
+            <ul key={idx}>{idx}: {bound.lowerBound} - {bound.upperBound}</ul>
+          ))}
+        </li>
+        <h3>Bounds length is {this.store.boundsLength}</h3>
         <BoundsEditor store={this.store} />
       </div>
     );
