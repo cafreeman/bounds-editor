@@ -3,11 +3,16 @@ import { observer } from 'mobx-react';
 import BoundItem from './BoundItem';
 
 function BoundsList({ store }) {
-  const onDelete = () => console.log('delete');
-
   return (
     <div className="list-group">
-      { store.bounds.map((bound, idx) => <BoundItem key={idx} bound={bound} onDelete={onDelete}/>) }
+      { store.bounds.map((bound, idx) => (
+          <BoundItem
+            key={idx}
+            bound={bound}
+            onDelete={() => store.deleteBound(idx)}
+            onEdit={(newBound) => store.editBound(idx, newBound)}
+          />
+        ))}
     </div>
   );
 }
