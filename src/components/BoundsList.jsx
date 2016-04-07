@@ -1,12 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import BoundItem from './BoundItem';
+import BoundItemContainer from './BoundItemContainer';
 
 function BoundsList({ store }) {
   return (
     <div className="list-group">
       { store.bounds.map((bound, idx) => (
-          <BoundItem
+          <BoundItemContainer
             key={idx}
             bound={bound}
             onDelete={() => store.deleteBound(idx)}

@@ -7,7 +7,7 @@ function InputBound({ bound, field, onChange, placeholder }) {
       type="text"
       className="form-control"
       defaultValue={bound[field]}
-      onChange={onChange}
+      onChange={(e) => onChange(e, field)}
       placeholder={ placeholder || field }
     />
   );
