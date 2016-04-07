@@ -1,7 +1,7 @@
 // require('!style!css!bootstrap/dist/css/bootstrap.css');
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Store from './stores/Store';
+import Store from './Store';
 import App from './components/App';
 
 const root = document.createElement('div');
