@@ -1,4 +1,3 @@
-/*@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css';*/
 @import 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css';
 
 body {
@@ -7,4 +6,16 @@ body {
 
 .form-inline > input {
   margin: 5px 3px;
+}
+
+.bound-item-view {
+  cursor: pointer;
+}
+
+.bound-item-view button {
+  visibility: hidden;
+}
+
+.bound-item-view:hover button {
+  visibility: visible;
 }
