@@ -3,14 +3,16 @@ import { observable, computed } from 'mobx';
 class Store {
   @observable bounds = [];
   @observable selectedField;
+  @observable fieldNames = [];
 
-  constructor() {
-    this.fieldNames = ['x1', 'x2', 'x3'];
+  constructor(fieldNames) {
+    this.fieldNames = fieldNames;
     this.selectedField = this.fieldNames[0];
   }
 
-  @computed get boundsLength() {
-    return this.bounds.length;
+  @computed get remainingFields() {
+    return this.fieldNames
+      .filter(field => !this.bounds.map(bound => bound.field).includes(field));
   }
 
   updateSelectedField(v) {
@@ -23,6 +25,7 @@ class Store {
       lowerBound: 0,
       upperBound: null,
     });
+    this.selectedField = this.remainingFields[0];
   }
 
   editBound(idx, newBound) {
@@ -31,6 +34,7 @@ class Store {
 
   deleteBound(idx) {
     this.bounds.splice(idx, 1);
+    this.selectedField = this.remainingFields[0];
   }
 }
 
