@@ -24,7 +24,7 @@ function BoundsEditor({ store }) {
           style={{ minWidth: 100 }}
           value={store.selectedField}
           disabledFilter={selectedFilter}
-          options={store.fieldNames}
+          options={store.fieldNameArray}
           onChange={handleSelection}
         />
         <button

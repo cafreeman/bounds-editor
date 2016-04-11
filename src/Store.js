@@ -3,15 +3,19 @@ import { observable, computed } from 'mobx';
 class Store {
   @observable bounds = [];
   @observable selectedField;
-  @observable fieldNames = [];
+  @observable fieldNames;
 
   constructor(fieldNames) {
     this.fieldNames = fieldNames;
-    this.selectedField = this.fieldNames[0];
+    this.selectedField = this.fieldNameArray[0];
+  }
+
+  @computed get fieldNameArray() {
+    return this.fieldNames.split(',').map(fieldName => fieldName.trim());
   }
 
   @computed get remainingFields() {
-    return this.fieldNames
+    return this.fieldNameArray
       .filter(field => !this.bounds.map(bound => bound.field).includes(field));
   }
 
