@@ -5,12 +5,9 @@ function BoundItemView({ bound, onClick, onDelete }) {
   const showUpperBound = () => (bound.upperBound ? `<= ${bound.upperBound}` : '');
   return (
     <div className="list-group-item clearfix bound-item-view" onClick={onClick}>
-      {/*<h4>{bound.lowerBound} &lt;= {bound.field} {showUpperBound()} </h4>*/}
-      {
-        <h4>{bound.lowerBound} &lt;= {bound.field} { showUpperBound() }
-          <button type="button" className="btn btn-danger pull-right" onClick={onDelete}>X</button>
-        </h4>
-      }
+      <h4>{bound.lowerBound} &lt;= {bound.field} { showUpperBound() }
+        <button type="button" className="btn btn-danger pull-right" onClick={onDelete}>X</button>
+      </h4>
     </div>
   );
 }
