@@ -8,7 +8,7 @@ function BoundItemEdit({ tempBound, onSubmit, onCancel }) {
   };
 
   return (
-    <div className="list-group-item clearfix">
+    <div className="clearfix">
       <form className="form-inline" onSubmit={onSubmit}>
         <InputBound
           bound={tempBound}

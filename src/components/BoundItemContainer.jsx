@@ -45,7 +45,7 @@ class BoundItemContainer extends React.Component {
       <BoundItemView
         bound={this.props.bound}
         onClick={this.toggleEditing}
-        onDelete={this.handleDelete}
+        // onDelete={this.handleDelete}
       />
     );
   }
