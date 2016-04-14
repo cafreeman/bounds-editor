@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.store = props.store;
+    this.fieldStore = props.fieldStore;
   }
 
   onEditorChange = (e) => {
@@ -16,7 +17,6 @@ class App extends React.Component {
 
   onFieldNameChange = (e) => {
     this.store.fieldNames = e.target.value;
-    console.log(this.store.fieldNameArray);
   }
 
   render() {
@@ -25,19 +25,20 @@ class App extends React.Component {
         <DevTools />
         <div className="col-md-8 col-md-offset-2">
           <DevTools />
-          <textarea
+          <h4>Field Names</h4>
+          <input
             className="form-control"
             value={this.store.fieldNames}
             onChange={this.onFieldNameChange}
           />
-          <h3>This is the text editor</h3>
-          <textarea
+          <h4>This is the text editor</h4>
+          <input
             className="form-control"
             value={this.store.editorValue}
             onChange={this.onEditorChange}
           />
           <br />
-          <Layout store={this.store} />
+          <Layout store={this.store} fieldStore={ this.fieldStore } />
         </div>
       </div>
     );

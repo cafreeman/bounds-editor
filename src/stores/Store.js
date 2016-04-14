@@ -1,19 +1,27 @@
 import { observable, computed, autorun } from 'mobx';
+import Field from './Field';
 
 class Store {
   @observable currentIndex = null;
   @observable bounds = [];
   @observable selectedField;
   @observable editorValue = '';
+  @observable fields = [];
 
   // Usually backed by Alteryx data items
   @observable constraints = [];
-  @observable fieldNames = '';
+  @observable fieldNames;
 
   constructor(fieldNames) {
-    // this.fieldNames = fieldNames;
+    this.fieldNames = fieldNames;
 
     autorun(() => { this.selectedField = this.fieldNameArray[0]; });
+  }
+
+  addField(name) {
+    this.fields.push(
+      new Field(name)
+    );
   }
 
   @computed get numConstraints() {
@@ -45,7 +53,6 @@ class Store {
   }
 
   editConstraint(idx) {
-    console.log(`editing ${idx}`);
     this.currentIndex = idx;
     this.editorValue = this.constraints[this.currentIndex];
     // this.update();
@@ -58,7 +65,10 @@ class Store {
   }
 
   @computed get fieldNameArray() {
-    return this.fieldNames.split(',').map(fieldName => fieldName.trim());
+    if (this.fieldNames) {
+      return this.fieldNames.split(',').map(fieldName => fieldName.trim());
+    }
+    return [];
   }
 
   @computed get remainingFields() {
