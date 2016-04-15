@@ -7,6 +7,7 @@ class Store {
   // Usually backed by Alteryx data items
   @observable constraints = [];
   @observable fieldNames;
+  @observable objective = '';
 
   constructor(fieldNames = '', fieldStore) {
     this.fieldNames = fieldNames;

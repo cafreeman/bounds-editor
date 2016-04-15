@@ -4,10 +4,12 @@ import ConstraintList from './components/ConstraintList';
 import BoundsEditor from './components/BoundsEditor';
 // import TypeSelector from './components/TypeSelector';
 import FieldList from './components/FieldList';
+import Objective from './components/Objective';
 
 function Layout({ store }) {
   return (
     <div>
+        <Objective label="Objective" store={store} />
         <FieldList label="Fields" store={store} />
         <ConstraintList label="Constraints" store={store} />
     </div>
