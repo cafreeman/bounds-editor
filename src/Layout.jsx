@@ -5,14 +5,11 @@ import BoundsEditor from './components/BoundsEditor';
 // import TypeSelector from './components/TypeSelector';
 import FieldList from './components/FieldList';
 
-function Layout({ store, fieldStore }) {
+function Layout({ store }) {
   return (
     <div>
-      <FieldList store={fieldStore} />
-      <h4>Add Constraints</h4>
-      <ConstraintList store={store} />
-      {/*<BoundsEditor store={store} />*/}
-      {/*<TypeSelector />*/}
+        <FieldList label="Fields" store={store} />
+        <ConstraintList label="Constraints" store={store} />
     </div>
   );
 }

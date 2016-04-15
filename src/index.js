@@ -9,11 +9,10 @@ const root = document.createElement('div');
 root.id = 'app';
 document.body.appendChild(root);
 
-// const store = new Store(['x1', 'x2', 'x3']);
-const store = new Store('x1, x2, x3');
 const fieldStore = new FieldStore();
+const store = new Store('', fieldStore);
 
 ReactDOM.render(
-  <App store= { store } fieldStore={ fieldStore } />,
+  <App store = {store} />,
   document.querySelector('#app')
 );

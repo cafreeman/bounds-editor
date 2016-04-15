@@ -8,7 +8,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.store = props.store;
-    this.fieldStore = props.fieldStore;
   }
 
   onEditorChange = (e) => {
@@ -23,7 +22,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <DevTools />
-        <div className="col-md-8 col-md-offset-2">
+        <div className="col-md-8 col-md-offset-2 col-xs-12">
           <DevTools />
           <h4>Field Names</h4>
           <input
@@ -38,7 +37,7 @@ class App extends React.Component {
             onChange={this.onEditorChange}
           />
           <br />
-          <Layout store={this.store} fieldStore={ this.fieldStore } />
+          <Layout store={this.store} />
         </div>
       </div>
     );

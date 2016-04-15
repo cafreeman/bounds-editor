@@ -1,21 +1,20 @@
 import React, { PropTypes as P } from 'react';
 import { observer } from 'mobx-react';
-// import { observable } from 'mobx';
 import FieldListItem from './FieldListItem';
 
 function FieldList({ store }) {
-  const handleAdd = () => store.addField(Math.random().toString());
+  const handleAdd = () => store.fieldNameArray.forEach(field => store.fieldStore.addField(field));
 
   return (
     <div>
       <button className="btn btn-default" onClick={handleAdd}>Add</button>
       <div className="panel-group">
         {
-          store.fields.map((field) => (
+          store.fieldStore.fields.map((field) => (
             <FieldListItem
               key={field.id}
               field={field}
-              options={store.fieldTypes}
+              options={store.fieldStore.fieldTypes}
             />
           ))
         }

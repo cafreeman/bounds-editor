@@ -1,27 +1,18 @@
 import { observable, computed, autorun } from 'mobx';
-import Field from './Field';
 
 class Store {
   @observable currentIndex = null;
-  @observable bounds = [];
-  @observable selectedField;
   @observable editorValue = '';
-  @observable fields = [];
 
   // Usually backed by Alteryx data items
   @observable constraints = [];
   @observable fieldNames;
 
-  constructor(fieldNames) {
+  constructor(fieldNames = '', fieldStore) {
     this.fieldNames = fieldNames;
+    this.fieldStore = fieldStore;
 
     autorun(() => { this.selectedField = this.fieldNameArray[0]; });
-  }
-
-  addField(name) {
-    this.fields.push(
-      new Field(name)
-    );
   }
 
   @computed get numConstraints() {
@@ -31,6 +22,10 @@ class Store {
   @computed get isEditorEmpty() {
     return this.editorValue === '';
   }
+
+  // @computed get saveOrAdd() {
+  //   return this.currentIndex === null ? 'Add' : 'Save';
+  // }
 
   @computed get saveOrAdd() {
     return this.currentIndex === null ? 'Add' : 'Save';
@@ -65,37 +60,14 @@ class Store {
   }
 
   @computed get fieldNameArray() {
-    if (this.fieldNames) {
-      return this.fieldNames.split(',').map(fieldName => fieldName.trim());
-    }
-    return [];
-  }
-
-  @computed get remainingFields() {
-    return this.fieldNameArray
-      .filter(field => !this.bounds.map(bound => bound.field).includes(field));
-  }
-
-  updateSelectedField(v) {
-    this.selectedField = v;
-  }
-
-  addBound(field) {
-    this.bounds.push({
-      field,
-      lowerBound: 0,
-      upperBound: null,
-    });
-    this.selectedField = this.remainingFields[0];
-  }
-
-  editBound(idx, newBound) {
-    this.bounds[idx] = newBound;
-  }
-
-  deleteBound(idx) {
-    this.bounds.splice(idx, 1);
-    this.selectedField = this.remainingFields[0];
+    return this.fieldNames.split(',')
+      .map(fieldName => fieldName.trim())
+      // Dedupe the result from map by comparing lowercase forms of each element
+      .reduce((acc, elem) => (acc.map(v => v.toLowerCase()).includes(elem.toLowerCase()) ?
+        acc :
+        acc.concat(elem)),
+        [] // Use an empty array as the start value
+      );
   }
 }
 
