@@ -9,31 +9,28 @@ function FieldListItem({ field, options }) {
   const onSelect = (v) => field.update('type', v);
 
   return (
-    <div className="panel panel-primary">
-      <div className="panel-heading ">
-        <h2 className="panel-title">{field.fieldName}
+    <div className="list-group-item">
+      <div className="row">
+        <div className="col-xs-8">
+          <BoundItemContainer
+            bound={field.bound}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        </div>
+        <div className="col-xs-3">
+          <Select
+            style={{ width: 'auto' }}
+            value={field.type}
+            options={options}
+            onChange={onSelect}
+          />
+        </div>
+        <div className="col-xs-1" style={{ marginTop: 5 }}>
           <a href="#" className="pull-right" onClick={handleDelete}>
-            <span className="glyphicon glyphicon-remove"></span>
+            <span className="fa fa-trash fa-lg text-danger"></span>
           </a>
-        </h2>
-      </div>
-      <div className="panel-body">
-        <ul className="list-unstyled">
-          <li>
-            <BoundItemContainer
-              bound={field.bound}
-              onDelete={handleDelete}
-              onEdit={handleEdit}
-            />
-          </li>
-          <li>
-            <Select
-              value={field.type}
-              options={options}
-              onChange={onSelect}
-            />
-          </li>
-        </ul>
+        </div>
       </div>
     </div>
   );

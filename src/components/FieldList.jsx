@@ -7,8 +7,10 @@ function FieldList({ store }) {
 
   return (
     <div>
-      <button className="btn btn-default" onClick={handleAdd}>Add</button>
-      <div className="panel-group">
+      <button className="btn btn-default" onClick={handleAdd}>
+        <i className="fa fa-plus"></i>
+      </button>
+      <div className="list-group">
         {
           store.fieldStore.fields.map((field) => (
             <FieldListItem

@@ -29,7 +29,7 @@ class Store {
   // }
 
   @computed get saveOrAdd() {
-    return this.currentIndex === null ? 'Add' : 'Save';
+    return this.currentIndex === null;
   }
 
   update() {
