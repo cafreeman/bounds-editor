@@ -1,17 +1,18 @@
 import React, { PropTypes as P } from 'react';
 import { observer } from 'mobx-react';
 import ConstraintList from './components/ConstraintList';
-import BoundsEditor from './components/BoundsEditor';
-// import TypeSelector from './components/TypeSelector';
 import FieldList from './components/FieldList';
 import Objective from './components/Objective';
+import NavTabs from './components/NavTabs';
 
 function Layout({ store }) {
   return (
     <div>
+      <NavTabs>
         <Objective label="Objective" store={store} />
         <FieldList label="Fields" store={store} />
         <ConstraintList label="Constraints" store={store} />
+      </NavTabs>
     </div>
   );
 }

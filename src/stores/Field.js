@@ -24,7 +24,6 @@ class Field {
   }
 
   delete() {
-    console.log('deleting!');
     this.store.deleteField(this);
   }
 }
